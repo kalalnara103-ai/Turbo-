@@ -1,4 +1,4 @@
-namename: Build VST DLL
+name: Build VST DLL
 
 on: [push, pull_request]
 
