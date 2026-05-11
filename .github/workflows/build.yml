@@ -1,0 +1,24 @@
+name: Build VST DLL
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up MSVC
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Compile DLL
+      run: |
+        cl.exe /LD /EHsc /I. *.cpp /Fe:EAXReverb.dll
+
+    - name: Upload DLL
+      uses: actions/upload-artifact@v3
+      with:
+        name: EAX-Reverb-Plugin
+        path: EAXReverb.dll
